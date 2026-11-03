@@ -111,7 +111,7 @@ svg { display: block; }
 }
 .place i { width: 22px; height: 22px; border-radius: 50%; background: var(--teal); display: inline-flex; align-items: center; justify-content: center; flex: none; }
 .place i svg { width: 13px; height: 13px; }
-.hero h1 { font-size: clamp(44px, 6.6vw, 78px); margin-top: 18px; letter-spacing: -1px; }
+.hero h1 { font-size: clamp(44px, 6.6vw, 78px); margin-top: 0; letter-spacing: -1px; }
 .hero h1 .hl { color: var(--orange); white-space: nowrap; text-decoration: underline; text-decoration-color: var(--yellow); text-decoration-thickness: .12em; text-underline-offset: .1em; text-decoration-skip-ink: none; }
 .hero .lead { margin-top: 18px; font-size: 19px; max-width: 36ch; font-weight: 600; }
 .hero .ctas { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 14px; }
@@ -230,6 +230,24 @@ svg { display: block; }
 .foot .mark-name .amp { color: var(--yellow-soft); }
 .foot p { font-size: 15px; font-weight: 700; }
 
+/* Prices */
+.prices-band { background: var(--paper); border-top: 3px solid var(--navy); }
+.prices { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 22px; align-items: start; }
+.price-card { border: 3px solid var(--navy); border-radius: 22px; overflow: hidden; background: var(--paper); box-shadow: 6px 6px 0 var(--navy); min-width: 0; }
+.price-head { display: flex; align-items: center; gap: 14px; padding: 12px 20px; border-bottom: 3px solid var(--navy); }
+.price-head svg { width: 92px; height: 74px; flex: none; }
+.price-head h3 { font-size: 28px; }
+.price-head p { font-size: 14px; font-weight: 700; margin-top: 2px; }
+.price-list { list-style: none; margin: 0; padding: 10px 20px 16px; }
+.price-list li { display: flex; align-items: baseline; gap: 10px; padding: 9px 0; border-bottom: 2px dotted var(--line); }
+.price-list li:last-child { border-bottom: 0; }
+.price-list .what { min-width: 0; flex: 1; font-size: 16px; }
+.price-list .what small { display: block; font-size: 13.5px; color: var(--teal); font-weight: 800; }
+.price-list .amt { font-family: var(--font-display); font-weight: 800; font-size: 23px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.price-list .promo .amt { color: var(--orange); }
+.prices-note { margin-top: 26px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; font-size: 16px; font-weight: 700; }
+.prices-note .pill { background: var(--yellow); border: 2px solid var(--navy); border-radius: 999px; padding: 6px 14px; font-weight: 900; }
+
 /* Floating WhatsApp */
 .float {
   position: fixed; z-index: 8;
@@ -249,6 +267,7 @@ svg { display: block; }
     </a>
     <nav class="nav" aria-label="Secciones">
       <a class="link" href="#servicios">Servicios</a>
+      <a class="link" href="#precios">Precios</a>
       <a class="link" href="#regalos">Regalos</a>
       <a class="link" href="#contacto">Contacto</a>
       <a class="btn btn-primary btn-sm" href="https://wa.me/5492644584188?text=Hola%20Punto%20%26%20Aparte%2C%20quiero%20hacer%20un%20pedido." target="_blank" rel="noopener">
@@ -263,7 +282,6 @@ svg { display: block; }
   <section class="hero">
     <div class="wrap">
       <div class="hero-copy">
-        <p class="place"><i><svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.2"></circle></svg></i>Barrio Edilco · Punta Arenas 2379</p>
         <h1>Impresiones y regalos frente al <span class="hl">Jardín ENI 45</span></h1>
         <p class="lead">Fotocopias, espiralados, plastificados, etiquetas y regalos, a pasos del Jardín ENI 45 y de la Escuela Mary O'Graham.</p>
         <div class="ctas">
@@ -298,10 +316,6 @@ svg { display: block; }
             <rect x="0" y="72" width="22" height="9" rx="4.5" fill="#F6C243" stroke="#1B2A5A" stroke-width="3"></rect>
             <rect x="0" y="92" width="22" height="9" rx="4.5" fill="#F6C243" stroke="#1B2A5A" stroke-width="3"></rect>
             <rect x="0" y="112" width="22" height="9" rx="4.5" fill="#F6C243" stroke="#1B2A5A" stroke-width="3"></rect>
-          </g>
-          <g transform="translate(250 330) rotate(-6)">
-            <rect x="0" y="0" width="92" height="34" rx="17" fill="#F9D3E2" stroke="#1B2A5A" stroke-width="3"></rect>
-            <text x="46" y="23" text-anchor="middle" font-family="Baloo 2, Arial Rounded MT Bold, sans-serif" font-weight="800" font-size="17" fill="#1B2A5A">Sofía</text>
           </g>
           <circle cx="58" cy="168" r="10" fill="#E94F8A"></circle>
           <circle cx="420" cy="200" r="8" fill="#2BA8B8"></circle>
@@ -395,14 +409,14 @@ svg { display: block; }
         <article class="service">
           <div class="art bg-pink" aria-hidden="true">
             <svg viewBox="0 0 200 160">
-              <rect x="42" y="14" width="116" height="132" rx="10" fill="#FFFFFF" stroke="#1B2A5A" stroke-width="4"></rect>
-              <rect x="54" y="28" width="92" height="28" rx="14" fill="#FFE7A3" stroke="#1B2A5A" stroke-width="2.5"></rect>
-              <text x="100" y="47" text-anchor="middle" font-family="Baloo 2, Arial Rounded MT Bold, sans-serif" font-weight="800" font-size="15" fill="#1B2A5A">Sofía</text>
-              <rect x="54" y="64" width="92" height="28" rx="14" fill="#CDEBEF" stroke="#1B2A5A" stroke-width="2.5"></rect>
-              <text x="100" y="83" text-anchor="middle" font-family="Baloo 2, Arial Rounded MT Bold, sans-serif" font-weight="800" font-size="15" fill="#1B2A5A">Tomás</text>
-              <g transform="translate(14 -10) rotate(-12 100 114)">
-                <rect x="54" y="100" width="92" height="28" rx="14" fill="#FBD8C9" stroke="#1B2A5A" stroke-width="2.5"></rect>
-                <text x="100" y="119" text-anchor="middle" font-family="Baloo 2, Arial Rounded MT Bold, sans-serif" font-weight="800" font-size="15" fill="#1B2A5A">Valen</text>
+              <rect x="40" y="16" width="120" height="128" rx="10" fill="#FFFFFF" stroke="#1B2A5A" stroke-width="4"></rect>
+              <circle cx="72" cy="48" r="18" fill="#F6C243" stroke="#1B2A5A" stroke-width="2.5"></circle>
+              <path transform="translate(128 48)" d="M0 -18 L5 -6 L18 -5 L8 4 L11 17 L0 10 L-11 17 L-8 4 L-18 -5 L-5 -6 Z" fill="#2BA8B8" stroke="#1B2A5A" stroke-width="2.5" stroke-linejoin="round"></path>
+              <path transform="translate(72 104)" d="M0 16 C-22 2 -18 -16 -6 -14 C-2 -13 0 -10 0 -8 C0 -10 2 -13 6 -14 C18 -16 22 2 0 16 Z" fill="#E94F8A" stroke="#1B2A5A" stroke-width="2.5" stroke-linejoin="round"></path>
+              <g transform="rotate(-14 128 104)">
+                <rect x="108" y="86" width="42" height="36" rx="9" fill="#D24E24" stroke="#1B2A5A" stroke-width="2.5"></rect>
+                <rect x="116" y="98" width="26" height="5" rx="2.5" fill="#FFFFFF"></rect>
+                <rect x="116" y="107" width="17" height="5" rx="2.5" fill="#FFFFFF"></rect>
               </g>
             </svg>
           </div>
@@ -416,7 +430,108 @@ svg { display: block; }
     </div>
   </section>
 
-  <svg class="wave" viewBox="0 0 1440 56" preserveAspectRatio="none" aria-hidden="true"><path d="M0 34 C 240 4 480 60 720 30 S 1200 2 1440 30 V56 H0Z" fill="#1B2A5A"></path></svg>
+  <section class="section prices-band" id="precios">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Precios</p>
+        <h2>Lista de precios</h2>
+        <p>Precios en pesos. Si tenés un trabajo distinto, consultanos por WhatsApp y te pasamos el precio.</p>
+      </div>
+      <div class="prices">
+        <article class="price-card">
+          <div class="price-head bg-orange">
+            <svg viewBox="0 0 200 160" aria-hidden="true">
+              <rect x="56" y="14" width="88" height="46" rx="4" fill="#FFFFFF" stroke="#1B2A5A" stroke-width="5"></rect>
+              <rect x="22" y="52" width="156" height="62" rx="16" fill="#1B2A5A"></rect>
+              <rect x="40" y="66" width="40" height="8" rx="4" fill="#2BA8B8"></rect>
+              <circle cx="154" cy="72" r="7" fill="#F6C243"></circle>
+              <rect x="54" y="92" width="92" height="58" rx="4" fill="#FFFFFF" stroke="#1B2A5A" stroke-width="5"></rect>
+              <rect x="66" y="106" width="46" height="7" rx="3.5" fill="#D24E24"></rect>
+              <rect x="66" y="120" width="68" height="5" rx="2.5" fill="#C9CFE0"></rect>
+            </svg>
+            <div><h3>Impresiones y copias</h3><p>Tamaño A4, precio por hoja</p></div>
+          </div>
+          <ul class="price-list">
+            <li><span class="what">Blanco y negro, una cara</span><span class="amt">$100</span></li>
+            <li><span class="what">Blanco y negro, una cara<small>Desde 20 hojas</small></span><span class="amt">$80</span></li>
+            <li><span class="what">Blanco y negro, doble faz</span><span class="amt">$150</span></li>
+            <li><span class="what">Color, una cara<small>Texto o gráficos</small></span><span class="amt">$200</span></li>
+            <li><span class="what">Color, doble faz<small>Texto o gráficos</small></span><span class="amt">$350</span></li>
+            <li><span class="what">Color, una cara<small>Página llena o foto</small></span><span class="amt">$500</span></li>
+            <li><span class="what">Color, doble faz<small>Página llena o foto</small></span><span class="amt">$900</span></li>
+          </ul>
+        </article>
+        <article class="price-card">
+          <div class="price-head bg-teal">
+            <svg viewBox="0 0 200 160" aria-hidden="true">
+              <rect x="66" y="18" width="96" height="124" rx="8" fill="#FFFFFF" stroke="#1B2A5A" stroke-width="5" transform="rotate(9 114 80)"></rect>
+              <rect x="52" y="16" width="96" height="124" rx="8" fill="#D24E24" stroke="#1B2A5A" stroke-width="5"></rect>
+              <rect x="72" y="46" width="60" height="34" rx="6" fill="#FFF8EC"></rect>
+              <rect x="81" y="56" width="42" height="5" rx="2.5" fill="#1B2A5A"></rect>
+              <rect x="42" y="26" width="20" height="9" rx="4.5" fill="#F6C243" stroke="#1B2A5A" stroke-width="3"></rect>
+              <rect x="42" y="50" width="20" height="9" rx="4.5" fill="#F6C243" stroke="#1B2A5A" stroke-width="3"></rect>
+              <rect x="42" y="74" width="20" height="9" rx="4.5" fill="#F6C243" stroke="#1B2A5A" stroke-width="3"></rect>
+              <rect x="42" y="98" width="20" height="9" rx="4.5" fill="#F6C243" stroke="#1B2A5A" stroke-width="3"></rect>
+              <rect x="42" y="122" width="20" height="9" rx="4.5" fill="#F6C243" stroke="#1B2A5A" stroke-width="3"></rect>
+            </svg>
+            <div><h3>Espiralados</h3><p>A4 con tapa y contratapa, según el espiral</p></div>
+          </div>
+          <ul class="price-list">
+            <li><span class="what">Hasta 25 hojas</span><span class="amt">$2.400</span></li>
+            <li><span class="what">Hasta 50 hojas</span><span class="amt">$2.700</span></li>
+            <li><span class="what">Hasta 100 hojas</span><span class="amt">$3.000</span></li>
+            <li><span class="what">Hasta 120 hojas</span><span class="amt">$3.300</span></li>
+            <li><span class="what">Hasta 160 hojas</span><span class="amt">$3.700</span></li>
+            <li><span class="what">Hasta 180 hojas</span><span class="amt">$4.000</span></li>
+            <li><span class="what">Hasta 250 hojas</span><span class="amt">$4.500</span></li>
+          </ul>
+        </article>
+        <article class="price-card">
+          <div class="price-head bg-yellow">
+            <svg viewBox="0 0 200 160" aria-hidden="true">
+              <g transform="rotate(-8 100 82)">
+                <rect x="28" y="34" width="144" height="94" rx="14" fill="#CDEBEF" stroke="#1B2A5A" stroke-width="5"></rect>
+                <rect x="38" y="44" width="124" height="74" rx="7" fill="#FFFFFF"></rect>
+                <circle cx="70" cy="80" r="17" fill="#D24E24"></circle>
+                <rect x="96" y="66" width="54" height="8" rx="4" fill="#1B2A5A"></rect>
+                <rect x="96" y="82" width="40" height="7" rx="3.5" fill="#C9CFE0"></rect>
+                <path d="M118 44 L138 44 L104 118 L84 118 Z" fill="#FFFFFF" opacity=".6"></path>
+              </g>
+            </svg>
+            <div><h3>Plastificados</h3><p>Precio por unidad</p></div>
+          </div>
+          <ul class="price-list">
+            <li><span class="what">Tamaño carnet o credencial</span><span class="amt">$1.200</span></li>
+            <li><span class="what">Tamaño A4</span><span class="amt">$2.200</span></li>
+            <li><span class="what">Tamaño A3</span><span class="amt">$3.500</span></li>
+          </ul>
+        </article>
+        <article class="price-card">
+          <div class="price-head bg-pink">
+            <svg viewBox="0 0 200 160" aria-hidden="true">
+              <rect x="40" y="16" width="120" height="128" rx="10" fill="#FFFFFF" stroke="#1B2A5A" stroke-width="5"></rect>
+              <circle cx="72" cy="48" r="18" fill="#F6C243" stroke="#1B2A5A" stroke-width="3"></circle>
+              <path transform="translate(128 48)" d="M0 -18 L5 -6 L18 -5 L8 4 L11 17 L0 10 L-11 17 L-8 4 L-18 -5 L-5 -6 Z" fill="#2BA8B8" stroke="#1B2A5A" stroke-width="3" stroke-linejoin="round"></path>
+              <path transform="translate(72 104)" d="M0 16 C-22 2 -18 -16 -6 -14 C-2 -13 0 -10 0 -8 C0 -10 2 -13 6 -14 C18 -16 22 2 0 16 Z" fill="#E94F8A" stroke="#1B2A5A" stroke-width="3" stroke-linejoin="round"></path>
+              <rect x="108" y="88" width="42" height="34" rx="9" fill="#D24E24" stroke="#1B2A5A" stroke-width="3" transform="rotate(-14 128 104)"></rect>
+            </svg>
+            <div><h3>Etiquetas adhesivas</h3><p>Precio por etiqueta</p></div>
+          </div>
+          <ul class="price-list">
+            <li><span class="what">Con nombre</span><span class="amt">$150</span></li>
+            <li><span class="what">Con foto</span><span class="amt">$300</span></li>
+            <li class="promo"><span class="what">Promo: 10 etiquetas con nombre</span><span class="amt">$1.200</span></li>
+          </ul>
+        </article>
+      </div>
+      <div class="prices-note">
+        <span class="pill">10% OFF en tu primer encargo</span>
+        <span>Consultá por regalos, artesanías, sahumerios y esencias.</span>
+      </div>
+    </div>
+  </section>
+
+  <svg class="wave" viewBox="0 0 1440 56" preserveAspectRatio="none" aria-hidden="true" style="background: #FFFFFF"><path d="M0 34 C 240 4 480 60 720 30 S 1200 2 1440 30 V56 H0Z" fill="#1B2A5A"></path></svg>
   <section class="section steps-band" id="como-pedir">
     <div class="wrap">
       <div class="section-head">
@@ -510,9 +625,9 @@ svg { display: block; }
         <div class="contact-card">
           <span class="ic" style="background: var(--yellow-soft)"><svg viewBox="0 0 24 24" fill="none" stroke="#1B2A5A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></span>
           <span class="lbl">Horario</span>
-          <span class="val">7:40 a 18 h</span>
+          <span class="val">7:40 a 18 hs</span>
           <p class="strong">Lunes a viernes</p>
-          <p>Abrimos antes de que entren la Escuela Mary O'Graham y el jardín.</p>
+          <p>Horario corrido.</p>
         </div>
         <div class="contact-card">
           <span class="ic" style="background: var(--teal-soft)"><svg viewBox="0 0 24 24" fill="none" stroke="#2B7F8C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.2"></circle></svg></span>
