@@ -8,18 +8,22 @@
 <meta name="description" content="Impresiones, espiralados, plastificados, etiquetas y regalos frente al Jardín ENI 45, barrio Edilco.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@500;700;800;900&display=swap">
 <style>
-/* Layout: one scrolling page of colored bands; brand dots as the recurring motif; one centered column, max 1080px. Single light look, chosen to keep the brand colors exact. */
+/* Layout: colored full-width bands joined by waves; flat illustrations of the shop's own work (notebooks, laminated cards, labels, gifts); brand dots as the recurring motif. Single light look, chosen to keep the brand colors exact. */
 :root {
   --cream: #FFF8EC;
   --paper: #FFFFFF;
   --navy: #1B2A5A;
+  --navy-soft: #D9DEEC;
   --orange: #D24E24;
   --orange-dark: #B8401B;
+  --orange-soft: #FBD8C9;
   --yellow: #F6C243;
   --yellow-soft: #FFE7A3;
   --teal: #2B7F8C;
   --teal-dot: #2BA8B8;
+  --teal-soft: #CDEBEF;
   --pink: #E94F8A;
+  --pink-soft: #F9D3E2;
   --line: #E9DFCB;
   --font-display: 'Baloo 2', 'Arial Rounded MT Bold', 'Trebuchet MS', sans-serif;
   --font-body: 'Nunito', 'Segoe UI', 'Trebuchet MS', sans-serif;
@@ -34,6 +38,7 @@ body {
   font-family: var(--font-body);
   font-size: 17px;
   line-height: 1.55;
+  overflow-x: hidden;
 }
 body::before {
   content: ""; position: fixed; inset: 0 0 auto;
@@ -43,12 +48,14 @@ a { color: inherit; }
 a:focus-visible, button:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; border-radius: 8px; }
 h1, h2, h3 { font-family: var(--font-display); font-weight: 800; line-height: 1.02; margin: 0; text-wrap: balance; }
 p { margin: 0; }
+svg { display: block; }
 
 .wrap {
-  max-width: 1080px; margin: 0 auto;
+  max-width: 1120px; margin: 0 auto;
   padding-left: max(16px, env(safe-area-inset-left, 0px));
   padding-right: max(16px, env(safe-area-inset-right, 0px));
 }
+.eyebrow { font-weight: 900; font-size: 14px; letter-spacing: 1.6px; text-transform: uppercase; color: var(--teal); }
 
 /* Brand mark */
 .mark { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; }
@@ -76,119 +83,159 @@ p { margin: 0; }
 .nav a.link:hover { color: var(--orange); }
 @media (max-width: 760px) { .nav a.link { display: none; } }
 
+/* Buttons */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 9px;
-  min-height: 48px; padding: 0 22px; border-radius: 999px;
+  min-height: 50px; padding: 0 24px; border-radius: 999px;
   font-family: var(--font-body); font-weight: 900; font-size: 16px; text-decoration: none;
-  border: 2px solid transparent; transition: transform .15s ease, background .15s ease;
+  border: 2px solid transparent; transition: transform .15s ease, background .15s ease, box-shadow .15s ease;
 }
 .btn:hover { transform: translateY(-2px); }
 @media (prefers-reduced-motion: reduce) { .btn:hover { transform: none; } }
 .btn svg { width: 20px; height: 20px; flex: none; }
-.btn-primary { background: var(--orange); color: #FFFFFF; }
+.btn-primary { background: var(--orange); color: #FFFFFF; box-shadow: 0 4px 0 var(--orange-dark); }
 .btn-primary:hover { background: var(--orange-dark); }
-.btn-ghost { border-color: var(--navy); color: var(--navy); background: transparent; }
-.btn-ghost:hover { background: var(--paper); }
-.btn-navy { background: var(--navy); color: #FFFFFF; }
-.btn-sm { min-height: 42px; padding: 0 16px; font-size: 14.5px; }
+.btn-ghost { border-color: var(--navy); color: var(--navy); background: var(--paper); }
+.btn-navy { background: var(--navy); color: #FFFFFF; box-shadow: 0 4px 0 #0F1A3D; }
+.btn-yellow { background: var(--yellow); color: var(--navy); box-shadow: 0 4px 0 #C99A26; }
+.btn-yellow:hover { background: var(--yellow-soft); }
+.btn-sm { min-height: 42px; padding: 0 16px; font-size: 14.5px; box-shadow: none; }
 
 /* Hero */
-.hero { position: relative; overflow: hidden; }
-.hero .wrap { padding-block: 56px 64px; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); gap: 32px; align-items: center; }
-.eyebrow { font-weight: 900; font-size: 14px; letter-spacing: 1.6px; text-transform: uppercase; color: var(--teal); }
-.hero h1 { font-size: clamp(42px, 7vw, 76px); margin-top: 12px; }
-.hero h1 .hl { color: var(--orange); }
-.hero .lead { margin-top: 18px; font-size: 19px; max-width: 34ch; font-weight: 600; }
-.hero .ctas { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 12px; }
-.hero-art { position: relative; aspect-ratio: 1; max-width: 100%; }
-.big-dot {
-  position: absolute; inset: 6%; border-radius: 50%; background: var(--orange);
-  display: flex; align-items: center; justify-content: center;
+.hero { position: relative; overflow: hidden; background-image: radial-gradient(rgba(27, 42, 90, .07) 2px, transparent 2px); background-size: 26px 26px; }
+.hero .wrap { padding-block: 44px 56px; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 28px; align-items: center; }
+.hero-copy { min-width: 0; }
+.place {
+  display: inline-flex; align-items: center; gap: 8px; background: var(--paper); border: 2px solid var(--navy);
+  border-radius: 999px; padding: 6px 14px 6px 8px; font-weight: 900; font-size: 13.5px; letter-spacing: 1px; text-transform: uppercase;
 }
-.big-dot span { font-family: var(--font-display); font-weight: 800; color: #FFFFFF; font-size: clamp(80px, 13vw, 150px); line-height: 1; padding-top: 6%; letter-spacing: -2px; }
-.big-pt { position: absolute; right: 4%; bottom: 10%; width: 24%; aspect-ratio: 1; border-radius: 50%; background: var(--yellow); border: 8px solid var(--cream); }
+.place i { width: 22px; height: 22px; border-radius: 50%; background: var(--teal); display: inline-flex; align-items: center; justify-content: center; flex: none; }
+.place i svg { width: 13px; height: 13px; }
+.hero h1 { font-size: clamp(44px, 6.6vw, 78px); margin-top: 18px; letter-spacing: -1px; }
+.hero h1 .hl { color: var(--orange); white-space: nowrap; text-decoration: underline; text-decoration-color: var(--yellow); text-decoration-thickness: .12em; text-underline-offset: .1em; text-decoration-skip-ink: none; }
+.hero .lead { margin-top: 18px; font-size: 19px; max-width: 36ch; font-weight: 600; }
+.hero .ctas { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 14px; }
+.hero-art { position: relative; max-width: 100%; }
+.hero-art > svg { width: 100%; height: auto; }
 .sticker {
-  position: absolute; left: -2%; top: 0; width: 34%; aspect-ratio: 1; border-radius: 50%;
+  position: absolute; left: 2%; top: 2%; width: 30%; aspect-ratio: 1; border-radius: 50%;
   background: var(--yellow); color: var(--navy); transform: rotate(-12deg);
   display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
   box-shadow: 0 0 0 5px var(--cream), 0 0 0 7px var(--navy);
+  animation: wobble 4s ease-in-out infinite;
 }
-.sticker b { font-family: var(--font-display); font-weight: 800; font-size: clamp(24px, 3.4vw, 36px); line-height: .9; }
-.sticker small { font-weight: 900; font-size: clamp(10px, 1.2vw, 12.5px); line-height: 1.15; }
-.confetti { position: absolute; border-radius: 50%; pointer-events: none; }
+.sticker b { font-family: var(--font-display); font-weight: 800; font-size: clamp(24px, 3.2vw, 38px); line-height: .9; }
+.sticker small { font-weight: 900; font-size: clamp(10px, 1.15vw, 12.5px); line-height: 1.15; }
+@keyframes wobble { 0%, 100% { transform: rotate(-12deg); } 50% { transform: rotate(-4deg) scale(1.04); } }
+@media (prefers-reduced-motion: reduce) { .sticker { animation: none; } }
 @media (max-width: 760px) {
-  .hero .wrap { grid-template-columns: 1fr; padding-block: 36px 48px; }
-  .hero-art { width: min(300px, 80%); margin: 0 auto; order: -1; }
+  .hero .wrap { grid-template-columns: 1fr; padding-block: 28px 44px; }
+  .hero-art { width: min(340px, 92%); margin: 0 auto; order: -1; }
 }
+
+/* Ticker */
+.ticker { background: var(--yellow); border-block: 3px solid var(--navy); overflow: hidden; }
+.ticker-track { display: flex; width: max-content; animation: slide 28s linear infinite; }
+.ticker-track span {
+  display: inline-flex; align-items: center; gap: 18px; padding: 12px 18px 10px;
+  font-family: var(--font-display); font-weight: 800; font-size: 24px; white-space: nowrap;
+}
+.ticker-track span::after { content: ""; width: 12px; height: 12px; border-radius: 50%; background: var(--orange); }
+@keyframes slide { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .ticker-track { animation: none; } }
 
 /* Sections */
 .section .wrap { padding-block: 64px; }
-.section-head { display: flex; flex-direction: column; gap: 8px; margin-bottom: 30px; }
-.section-head h2 { font-size: clamp(32px, 4.6vw, 46px); }
+.section-head { display: flex; flex-direction: column; gap: 8px; margin-bottom: 32px; }
+.section-head h2 { font-size: clamp(32px, 4.6vw, 50px); }
 .section-head p { max-width: 58ch; font-size: 18px; }
 
 /* Services */
-.services { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr)); gap: 16px; }
+.services { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 18px; }
 .service {
-  background: var(--paper); border: 2px solid var(--navy); border-radius: 18px; padding: 22px 20px 20px;
-  display: flex; flex-direction: column; gap: 10px; min-width: 0;
+  background: var(--paper); border: 3px solid var(--navy); border-radius: 22px; overflow: hidden;
+  display: flex; flex-direction: column; min-width: 0; box-shadow: 6px 6px 0 var(--navy);
+  transition: transform .2s ease, box-shadow .2s ease;
 }
-.service .ico { width: 52px; height: 52px; border-radius: 14px; background: var(--cream); display: flex; align-items: center; justify-content: center; }
-.service .ico svg { width: 30px; height: 30px; }
-.service h3 { font-size: 25px; }
+.service:hover { transform: translate(-3px, -3px); box-shadow: 9px 9px 0 var(--navy); }
+@media (prefers-reduced-motion: reduce) { .service, .service:hover { transition: none; transform: none; } }
+.service .art { height: 170px; display: flex; align-items: center; justify-content: center; border-bottom: 3px solid var(--navy); }
+.service .art svg { width: 190px; height: 150px; }
+.service .body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.service h3 { font-size: 26px; }
 .service p { font-size: 16px; }
-.service .tag { margin-top: auto; padding-top: 6px; font-weight: 900; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; color: var(--teal); }
+.service .tag { margin-top: auto; padding-top: 8px; font-weight: 900; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; color: var(--teal); }
+.bg-yellow { background: var(--yellow-soft); }
+.bg-teal { background: var(--teal-soft); }
+.bg-orange { background: var(--orange-soft); }
+.bg-pink { background: var(--pink-soft); }
+
+/* Waves */
+.wave { width: 100%; height: 56px; }
 
 /* Steps */
-.steps-band { background: var(--navy); color: #FFFFFF; }
-.steps-band .section-head p { color: #D9DEEC; }
-.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr)); gap: 16px; counter-reset: paso; }
-.steps li { counter-increment: paso; display: flex; gap: 16px; align-items: flex-start; min-width: 0; }
+.steps-band {
+  background-color: var(--navy); color: #FFFFFF;
+  background-image: radial-gradient(rgba(255, 255, 255, .07) 2px, transparent 2px); background-size: 24px 24px;
+}
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr)); gap: 18px; counter-reset: paso; }
+.steps li {
+  counter-increment: paso; display: flex; flex-direction: column; gap: 12px; min-width: 0;
+  background: rgba(255, 255, 255, .06); border: 2px solid rgba(255, 255, 255, .16); border-radius: 20px; padding: 22px;
+}
 .steps li::before {
-  content: counter(paso); flex: none; width: 52px; height: 52px; border-radius: 50%;
+  content: counter(paso); width: 56px; height: 56px; border-radius: 50%;
   background: var(--yellow); color: var(--navy);
-  font-family: var(--font-display); font-weight: 800; font-size: 28px; line-height: 1;
+  font-family: var(--font-display); font-weight: 800; font-size: 30px; line-height: 1;
   display: flex; align-items: center; justify-content: center; padding-top: 4px;
 }
-.steps h3 { font-size: 23px; color: #FFFFFF; }
-.steps p { font-size: 16px; color: #D9DEEC; margin-top: 4px; }
+.steps h3 { font-size: 25px; color: #FFFFFF; }
+.steps p { font-size: 16px; color: var(--navy-soft); }
 .steps-cta { margin-top: 32px; }
-.steps-cta .btn-primary { background: var(--yellow); color: var(--navy); }
-.steps-cta .btn-primary:hover { background: var(--yellow-soft); }
 
 /* Gifts */
 .gifts { background: var(--yellow); }
-.gifts .wrap { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 28px; align-items: center; }
-.gifts h2 { font-size: clamp(32px, 4.6vw, 46px); }
-.gifts p { margin-top: 10px; font-size: 19px; font-weight: 700; max-width: 40ch; }
-.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
-.chip { background: var(--cream); border-radius: 999px; padding: 6px 14px; font-weight: 800; font-size: 14.5px; }
-@media (max-width: 760px) { .gifts .wrap { grid-template-columns: 1fr; } }
+.gifts .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: center; padding-block: 56px 64px; }
+.gifts h2 { font-size: clamp(34px, 4.8vw, 52px); }
+.gifts p { margin-top: 12px; font-size: 19px; font-weight: 700; max-width: 40ch; }
+.chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+.chip { background: var(--paper); border: 2px solid var(--navy); border-radius: 999px; padding: 6px 15px; font-weight: 900; font-size: 15px; }
+.gifts .btn { margin-top: 26px; }
+.gifts-art svg { width: 100%; height: auto; max-width: 480px; margin: 0 auto; }
+@media (max-width: 760px) { .gifts .wrap { grid-template-columns: 1fr; } .gifts-art { order: -1; } }
 
 /* Coming soon */
-.soon { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; background: var(--paper); border: 2px dashed var(--teal); border-radius: 18px; padding: 20px 22px; }
-.soon .badge { background: var(--teal); color: #FFFFFF; border-radius: 999px; padding: 5px 13px; font-weight: 900; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; }
-.soon p { font-size: 17px; font-weight: 700; min-width: 0; flex: 1 1 280px; }
+.soon { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; background: var(--paper); border: 3px dashed var(--teal); border-radius: 20px; padding: 20px 22px; }
+.soon .badge { background: var(--teal); color: #FFFFFF; border-radius: 999px; padding: 6px 14px; font-weight: 900; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; }
+.soon p { font-size: 17px; font-weight: 800; min-width: 0; flex: 1 1 280px; }
+.soon svg { width: 54px; height: 54px; flex: none; }
 
 /* Contact */
-.contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr)); gap: 16px; }
-.contact-card { background: var(--paper); border-radius: 18px; padding: 22px; display: flex; flex-direction: column; gap: 8px; min-width: 0; border: 1px solid var(--line); }
+.contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr)); gap: 16px; }
+.contact-card { background: var(--paper); border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 8px; min-width: 0; border: 3px solid var(--navy); }
+.contact-card .ic { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 4px; }
+.contact-card .ic svg { width: 26px; height: 26px; }
 .contact-card .lbl { font-weight: 900; font-size: 13px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--teal); }
-.contact-card .val { font-family: var(--font-display); font-weight: 800; font-size: 28px; line-height: 1.1; overflow-wrap: anywhere; user-select: all; }
+.contact-card .val { font-family: var(--font-display); font-weight: 800; font-size: 27px; line-height: 1.1; overflow-wrap: anywhere; }
 .contact-card p { font-size: 16px; }
+.contact-card .strong { font-weight: 800; }
 .contact-card .btn { margin-top: auto; align-self: flex-start; }
 .copy { background: none; border: 0; padding: 0; font: inherit; font-weight: 800; font-size: 14px; color: var(--teal); cursor: pointer; text-decoration: underline; align-self: flex-start; }
 
 /* Footer */
-.foot .wrap { padding-block: 32px 96px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; border-top: 1px solid var(--line); }
-.foot p { font-size: 14.5px; }
+.foot { background: var(--orange); color: #FFFFFF; }
+.foot .wrap { padding-block: 34px 100px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
+.foot .mark-dot .fm { background: #FFFFFF; color: var(--orange); }
+.foot .mark-dot .pt { border-color: var(--orange); }
+.foot .mark-name .amp { color: var(--yellow-soft); }
+.foot p { font-size: 15px; font-weight: 700; }
 
 /* Floating WhatsApp */
 .float {
   position: fixed; z-index: 8;
   right: calc(16px + env(safe-area-inset-right, 0px));
   bottom: calc(16px + env(safe-area-inset-bottom, 0px));
-  box-shadow: 0 8px 24px rgba(27, 42, 90, .28);
+  box-shadow: 0 8px 24px rgba(27, 42, 90, .3);
 }
 @media (min-width: 761px) { .float { display: none; } }
 </style>
@@ -214,14 +261,11 @@ p { margin: 0; }
 
 <main id="inicio">
   <section class="hero">
-    <span class="confetti" style="width:18px;height:18px;background:var(--pink);left:6%;top:12%"></span>
-    <span class="confetti" style="width:58px;height:58px;background:var(--teal-dot);left:-22px;bottom:18%"></span>
-    <span class="confetti" style="width:12px;height:12px;background:var(--teal-dot);right:40%;bottom:10%"></span>
     <div class="wrap">
-      <div>
-        <p class="eyebrow">Barrio Edilco · Punta Arenas 2379</p>
-        <h1>¡Abrimos frente al <span class="hl">Jardín ENI 45!</span></h1>
-        <p class="lead">Impresiones, espiralados, plastificados, etiquetas y regalos, a pasos del Jardín ENI 45 y de la Escuela Mary O'Graham.</p>
+      <div class="hero-copy">
+        <p class="place"><i><svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.2"></circle></svg></i>Barrio Edilco · Punta Arenas 2379</p>
+        <h1>Impresiones y regalos frente al <span class="hl">Jardín ENI 45</span></h1>
+        <p class="lead">Fotocopias, espiralados, plastificados, etiquetas y regalos, a pasos del Jardín ENI 45 y de la Escuela Mary O'Graham.</p>
         <div class="ctas">
           <a class="btn btn-primary" href="https://wa.me/5492644584188?text=Hola%20Punto%20%26%20Aparte%2C%20quiero%20hacer%20un%20pedido." target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.2A8.5 8.5 0 1 1 21 12z"></path></svg>
@@ -231,12 +275,50 @@ p { margin: 0; }
         </div>
       </div>
       <div class="hero-art" aria-hidden="true">
-        <div class="big-dot"><span>FM</span></div>
-        <div class="big-pt"></div>
+        <svg viewBox="0 0 440 400">
+          <circle cx="250" cy="196" r="150" fill="#D24E24"></circle>
+          <text x="250" y="240" text-anchor="middle" font-family="Baloo 2, Arial Rounded MT Bold, sans-serif" font-weight="800" font-size="132" fill="#FFFFFF" letter-spacing="-3">FM</text>
+          <circle cx="368" cy="312" r="38" fill="#F6C243" stroke="#FFF8EC" stroke-width="12"></circle>
+          <g transform="translate(300 18) rotate(12)">
+            <rect x="0" y="0" width="96" height="120" rx="6" fill="#FFFFFF" stroke="#1B2A5A" stroke-width="4"></rect>
+            <rect x="14" y="18" width="50" height="8" rx="4" fill="#D24E24"></rect>
+            <rect x="14" y="36" width="68" height="6" rx="3" fill="#C9CFE0"></rect>
+            <rect x="14" y="50" width="60" height="6" rx="3" fill="#C9CFE0"></rect>
+            <rect x="14" y="64" width="66" height="6" rx="3" fill="#C9CFE0"></rect>
+            <circle cx="70" cy="96" r="10" fill="#2BA8B8"></circle>
+          </g>
+          <g transform="translate(36 222) rotate(-14)">
+            <rect x="10" y="0" width="112" height="140" rx="9" fill="#2B7F8C" stroke="#1B2A5A" stroke-width="4"></rect>
+            <rect x="32" y="30" width="72" height="40" rx="7" fill="#FFF8EC"></rect>
+            <rect x="42" y="42" width="50" height="6" rx="3" fill="#1B2A5A"></rect>
+            <rect x="42" y="54" width="32" height="6" rx="3" fill="#D24E24"></rect>
+            <rect x="0" y="12" width="22" height="9" rx="4.5" fill="#F6C243" stroke="#1B2A5A" stroke-width="3"></rect>
+            <rect x="0" y="32" width="22" height="9" rx="4.5" fill="#F6C243" stroke="#1B2A5A" stroke-width="3"></rect>
+            <rect x="0" y="52" width="22" height="9" rx="4.5" fill="#F6C243" stroke="#1B2A5A" stroke-width="3"></rect>
+            <rect x="0" y="72" width="22" height="9" rx="4.5" fill="#F6C243" stroke="#1B2A5A" stroke-width="3"></rect>
+            <rect x="0" y="92" width="22" height="9" rx="4.5" fill="#F6C243" stroke="#1B2A5A" stroke-width="3"></rect>
+            <rect x="0" y="112" width="22" height="9" rx="4.5" fill="#F6C243" stroke="#1B2A5A" stroke-width="3"></rect>
+          </g>
+          <g transform="translate(250 330) rotate(-6)">
+            <rect x="0" y="0" width="92" height="34" rx="17" fill="#F9D3E2" stroke="#1B2A5A" stroke-width="3"></rect>
+            <text x="46" y="23" text-anchor="middle" font-family="Baloo 2, Arial Rounded MT Bold, sans-serif" font-weight="800" font-size="17" fill="#1B2A5A">Sofía</text>
+          </g>
+          <circle cx="58" cy="168" r="10" fill="#E94F8A"></circle>
+          <circle cx="420" cy="200" r="8" fill="#2BA8B8"></circle>
+          <circle cx="196" cy="384" r="7" fill="#F6C243"></circle>
+          <path transform="translate(150 40)" d="M0 -14 C3 -3 3 -3 14 0 C3 3 3 3 0 14 C-3 3 -3 3 -14 0 C-3 -3 -3 -3 0 -14Z" fill="#F6C243" stroke="#1B2A5A" stroke-width="2.5"></path>
+        </svg>
         <div class="sticker"><b>10%</b><small>OFF en tu<br>primer encargo</small></div>
       </div>
     </div>
   </section>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>Impresiones</span><span>Fotocopias</span><span>Espiralados</span><span>Plastificados</span><span>Etiquetas con nombre</span><span>Regalos</span><span>Sahumerios</span><span>Esencias</span>
+      <span>Impresiones</span><span>Fotocopias</span><span>Espiralados</span><span>Plastificados</span><span>Etiquetas con nombre</span><span>Regalos</span><span>Sahumerios</span><span>Esencias</span>
+    </div>
+  </div>
 
   <section class="section" id="servicios">
     <div class="wrap">
@@ -247,33 +329,94 @@ p { margin: 0; }
       </div>
       <div class="services">
         <article class="service">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6"></path><rect x="3" y="9" width="18" height="8" rx="2"></rect><path d="M6 14h12v7H6z"></path></svg></div>
-          <h3>Impresiones y copias</h3>
-          <p>En blanco y negro o a color, de tus archivos, fotos o documentos en papel.</p>
-          <p class="tag">Tamaño A4</p>
+          <div class="art bg-orange" aria-hidden="true">
+            <svg viewBox="0 0 200 160">
+              <rect x="56" y="14" width="88" height="46" rx="4" fill="#FFFFFF" stroke="#1B2A5A" stroke-width="4"></rect>
+              <rect x="22" y="52" width="156" height="62" rx="16" fill="#1B2A5A"></rect>
+              <rect x="40" y="66" width="40" height="8" rx="4" fill="#2BA8B8"></rect>
+              <circle cx="154" cy="72" r="7" fill="#F6C243"></circle>
+              <rect x="54" y="92" width="92" height="58" rx="4" fill="#FFFFFF" stroke="#1B2A5A" stroke-width="4"></rect>
+              <rect x="66" y="106" width="46" height="7" rx="3.5" fill="#D24E24"></rect>
+              <rect x="66" y="120" width="68" height="5" rx="2.5" fill="#C9CFE0"></rect>
+              <rect x="66" y="131" width="56" height="5" rx="2.5" fill="#C9CFE0"></rect>
+            </svg>
+          </div>
+          <div class="body">
+            <h3>Impresiones y copias</h3>
+            <p>En blanco y negro o a color, de tus archivos, fotos o documentos en papel.</p>
+            <p class="tag">Tamaño A4</p>
+          </div>
         </article>
         <article class="service">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="3" width="13" height="18" rx="1.5"></rect><path d="M4 6h5M4 10h5M4 14h5M4 18h5"></path></svg></div>
-          <h3>Espiralados</h3>
-          <p>Carpetas, apuntes, cuadernillos y trabajos prácticos con tapa transparente y contratapa.</p>
-          <p class="tag">Espirales de todos los tamaños</p>
+          <div class="art bg-teal" aria-hidden="true">
+            <svg viewBox="0 0 200 160">
+              <rect x="66" y="18" width="96" height="124" rx="8" fill="#FFFFFF" stroke="#1B2A5A" stroke-width="4" transform="rotate(9 114 80)"></rect>
+              <rect x="52" y="16" width="96" height="124" rx="8" fill="#D24E24" stroke="#1B2A5A" stroke-width="4"></rect>
+              <rect x="72" y="46" width="60" height="34" rx="6" fill="#FFF8EC"></rect>
+              <rect x="81" y="56" width="42" height="5" rx="2.5" fill="#1B2A5A"></rect>
+              <rect x="81" y="67" width="28" height="5" rx="2.5" fill="#2B7F8C"></rect>
+              <rect x="42" y="26" width="20" height="8" rx="4" fill="#F6C243" stroke="#1B2A5A" stroke-width="2.5"></rect>
+              <rect x="42" y="42" width="20" height="8" rx="4" fill="#F6C243" stroke="#1B2A5A" stroke-width="2.5"></rect>
+              <rect x="42" y="58" width="20" height="8" rx="4" fill="#F6C243" stroke="#1B2A5A" stroke-width="2.5"></rect>
+              <rect x="42" y="74" width="20" height="8" rx="4" fill="#F6C243" stroke="#1B2A5A" stroke-width="2.5"></rect>
+              <rect x="42" y="90" width="20" height="8" rx="4" fill="#F6C243" stroke="#1B2A5A" stroke-width="2.5"></rect>
+              <rect x="42" y="106" width="20" height="8" rx="4" fill="#F6C243" stroke="#1B2A5A" stroke-width="2.5"></rect>
+              <rect x="42" y="122" width="20" height="8" rx="4" fill="#F6C243" stroke="#1B2A5A" stroke-width="2.5"></rect>
+            </svg>
+          </div>
+          <div class="body">
+            <h3>Espiralados</h3>
+            <p>Carpetas, apuntes, cuadernillos y trabajos prácticos con tapa transparente y contratapa.</p>
+            <p class="tag">Espirales de todos los tamaños</p>
+          </div>
         </article>
         <article class="service">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M7 15l4-6M10 15l4-6"></path></svg></div>
-          <h3>Plastificados</h3>
-          <p>Credenciales, láminas, carteles y fotos protegidos para que duren.</p>
-          <p class="tag">Hasta tamaño A3</p>
+          <div class="art bg-yellow" aria-hidden="true">
+            <svg viewBox="0 0 200 160">
+              <g transform="rotate(-8 100 82)">
+                <rect x="28" y="34" width="144" height="94" rx="14" fill="#CDEBEF" stroke="#1B2A5A" stroke-width="4"></rect>
+                <rect x="38" y="44" width="124" height="74" rx="7" fill="#FFFFFF"></rect>
+                <circle cx="70" cy="80" r="17" fill="#D24E24"></circle>
+                <rect x="96" y="66" width="54" height="7" rx="3.5" fill="#1B2A5A"></rect>
+                <rect x="96" y="80" width="40" height="6" rx="3" fill="#C9CFE0"></rect>
+                <rect x="96" y="92" width="48" height="6" rx="3" fill="#C9CFE0"></rect>
+                <path d="M118 44 L138 44 L104 118 L84 118 Z" fill="#FFFFFF" opacity=".6"></path>
+              </g>
+              <path transform="translate(168 30)" d="M0 -12 C3 -3 3 -3 12 0 C3 3 3 3 0 12 C-3 3 -3 3 -12 0 C-3 -3 -3 -3 0 -12Z" fill="#FFFFFF" stroke="#1B2A5A" stroke-width="2.5"></path>
+              <path transform="translate(30 138)" d="M0 -9 C2 -2 2 -2 9 0 C2 2 2 2 0 9 C-2 2 -2 2 -9 0 C-2 -2 -2 -2 0 -9Z" fill="#FFFFFF" stroke="#1B2A5A" stroke-width="2.5"></path>
+            </svg>
+          </div>
+          <div class="body">
+            <h3>Plastificados</h3>
+            <p>Credenciales, láminas, carteles y fotos protegidos para que duren.</p>
+            <p class="tag">Hasta tamaño A3</p>
+          </div>
         </article>
         <article class="service">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"></path><circle cx="7.5" cy="7.5" r="1.5"></circle></svg></div>
-          <h3>Etiquetas y stickers</h3>
-          <p>Etiquetas adhesivas con el nombre para útiles, frascos y souvenirs.</p>
-          <p class="tag">Al momento</p>
+          <div class="art bg-pink" aria-hidden="true">
+            <svg viewBox="0 0 200 160">
+              <rect x="42" y="14" width="116" height="132" rx="10" fill="#FFFFFF" stroke="#1B2A5A" stroke-width="4"></rect>
+              <rect x="54" y="28" width="92" height="28" rx="14" fill="#FFE7A3" stroke="#1B2A5A" stroke-width="2.5"></rect>
+              <text x="100" y="47" text-anchor="middle" font-family="Baloo 2, Arial Rounded MT Bold, sans-serif" font-weight="800" font-size="15" fill="#1B2A5A">Sofía</text>
+              <rect x="54" y="64" width="92" height="28" rx="14" fill="#CDEBEF" stroke="#1B2A5A" stroke-width="2.5"></rect>
+              <text x="100" y="83" text-anchor="middle" font-family="Baloo 2, Arial Rounded MT Bold, sans-serif" font-weight="800" font-size="15" fill="#1B2A5A">Tomás</text>
+              <g transform="translate(14 -10) rotate(-12 100 114)">
+                <rect x="54" y="100" width="92" height="28" rx="14" fill="#FBD8C9" stroke="#1B2A5A" stroke-width="2.5"></rect>
+                <text x="100" y="119" text-anchor="middle" font-family="Baloo 2, Arial Rounded MT Bold, sans-serif" font-weight="800" font-size="15" fill="#1B2A5A">Valen</text>
+              </g>
+            </svg>
+          </div>
+          <div class="body">
+            <h3>Etiquetas y stickers</h3>
+            <p>Etiquetas adhesivas con el nombre para útiles, frascos y souvenirs.</p>
+            <p class="tag">Al momento</p>
+          </div>
         </article>
       </div>
     </div>
   </section>
 
+  <svg class="wave" viewBox="0 0 1440 56" preserveAspectRatio="none" aria-hidden="true"><path d="M0 34 C 240 4 480 60 720 30 S 1200 2 1440 30 V56 H0Z" fill="#1B2A5A"></path></svg>
   <section class="section steps-band" id="como-pedir">
     <div class="wrap">
       <div class="section-head">
@@ -281,20 +424,21 @@ p { margin: 0; }
         <h2>Pedilo por WhatsApp y retiralo en el local</h2>
       </div>
       <ol class="steps">
-        <li><div><h3>Mandanos tu archivo</h3><p>Por WhatsApp, en PDF, Word o foto. Contanos cuántas copias necesitás y cómo las querés.</p></div></li>
-        <li><div><h3>Te confirmamos</h3><p>Te respondemos con el precio y el horario en que tu pedido va a estar listo.</p></div></li>
-        <li><div><h3>Lo retirás</h3><p>Pasás por Punta Arenas 2379, frente al Jardín ENI 45, y lo llevás.</p></div></li>
+        <li><h3>Mandanos tu archivo</h3><p>Por WhatsApp, en PDF, Word o foto. Contanos cuántas copias necesitás y cómo las querés.</p></li>
+        <li><h3>Te confirmamos</h3><p>Te respondemos con el precio y el horario en que tu pedido va a estar listo.</p></li>
+        <li><h3>Lo retirás</h3><p>Pasás por Punta Arenas 2379, frente al Jardín ENI 45, y lo llevás.</p></li>
       </ol>
       <div class="steps-cta">
-        <a class="btn btn-primary" href="https://wa.me/5492644584188?text=Hola%20Punto%20%26%20Aparte%2C%20quiero%20hacer%20un%20pedido." target="_blank" rel="noopener">
+        <a class="btn btn-yellow" href="https://wa.me/5492644584188?text=Hola%20Punto%20%26%20Aparte%2C%20quiero%20hacer%20un%20pedido." target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.2A8.5 8.5 0 1 1 21 12z"></path></svg>
           Escribinos al 264 458 4188
         </a>
       </div>
     </div>
   </section>
+  <svg class="wave" viewBox="0 0 1440 56" preserveAspectRatio="none" aria-hidden="true" style="background: #1B2A5A"><path d="M0 34 C 240 4 480 60 720 30 S 1200 2 1440 30 V56 H0Z" fill="#F6C243"></path></svg>
 
-  <section class="section gifts" id="regalos">
+  <section class="gifts" id="regalos">
     <div class="wrap">
       <div>
         <p class="eyebrow" style="color: var(--navy)">Regalos</p>
@@ -306,41 +450,79 @@ p { margin: 0; }
           <span class="chip">Sahumerios</span>
           <span class="chip">Esencias</span>
         </div>
+        <a class="btn btn-navy" href="https://www.instagram.com/fm.puntoyaparte/" target="_blank" rel="noopener">Ver en Instagram</a>
       </div>
-      <a class="btn btn-navy" href="https://www.instagram.com/fm.puntoyaparte/" target="_blank" rel="noopener">Ver en Instagram</a>
+      <div class="gifts-art" aria-hidden="true">
+        <svg viewBox="0 0 340 240">
+          <ellipse cx="170" cy="222" rx="160" ry="12" fill="#1B2A5A" opacity=".14"></ellipse>
+          <rect x="18" y="138" width="116" height="82" rx="8" fill="#B8401B" stroke="#1B2A5A" stroke-width="4"></rect>
+          <rect x="10" y="120" width="132" height="26" rx="9" fill="#D24E24" stroke="#1B2A5A" stroke-width="4"></rect>
+          <circle cx="46" cy="178" r="9" fill="#F6C243"></circle>
+          <circle cx="76" cy="178" r="9" fill="#FFFFFF"></circle>
+          <circle cx="106" cy="178" r="9" fill="#2BA8B8"></circle>
+          <path d="M34 200 Q 76 188 118 200" stroke="#FFE7A3" stroke-width="4" fill="none" stroke-linecap="round"></path>
+          <rect x="148" y="112" width="104" height="108" rx="6" fill="#2B7F8C" stroke="#1B2A5A" stroke-width="4"></rect>
+          <rect x="140" y="92" width="120" height="30" rx="6" fill="#2BA8B8" stroke="#1B2A5A" stroke-width="4"></rect>
+          <rect x="191" y="92" width="18" height="128" fill="#F6C243" stroke="#1B2A5A" stroke-width="3"></rect>
+          <ellipse cx="184" cy="82" rx="20" ry="11" fill="#F6C243" stroke="#1B2A5A" stroke-width="3" transform="rotate(-22 184 82)"></ellipse>
+          <ellipse cx="216" cy="82" rx="20" ry="11" fill="#F6C243" stroke="#1B2A5A" stroke-width="3" transform="rotate(22 216 82)"></ellipse>
+          <circle cx="200" cy="88" r="8" fill="#F6C243" stroke="#1B2A5A" stroke-width="3"></circle>
+          <rect x="268" y="170" width="28" height="50" rx="7" fill="#E9A23B" stroke="#1B2A5A" stroke-width="3"></rect>
+          <rect x="275" y="156" width="14" height="16" rx="2" fill="#1B2A5A"></rect>
+          <rect x="272" y="186" width="20" height="14" rx="2" fill="#FFF8EC"></rect>
+          <ellipse cx="316" cy="219" rx="18" ry="6" fill="#1B2A5A"></ellipse>
+          <line x1="314" y1="216" x2="326" y2="120" stroke="#8A4B2A" stroke-width="4" stroke-linecap="round"></line>
+          <circle cx="326" cy="118" r="4.5" fill="#D24E24"></circle>
+          <path d="M326 110 C 316 96, 336 86, 326 72 S 318 46, 332 32" stroke="#FFFFFF" stroke-width="4" fill="none" stroke-linecap="round" opacity=".9"></path>
+          <circle cx="40" cy="60" r="8" fill="#E94F8A"></circle>
+          <circle cx="110" cy="34" r="6" fill="#FFFFFF"></circle>
+          <path transform="translate(270 70)" d="M0 -13 C3 -3 3 -3 13 0 C3 3 3 3 0 13 C-3 3 -3 3 -13 0 C-3 -3 -3 -3 0 -13Z" fill="#FFFFFF" stroke="#1B2A5A" stroke-width="2.5"></path>
+        </svg>
+      </div>
     </div>
   </section>
 
   <section class="section" id="contacto">
-    <div class="wrap" style="display: flex; flex-direction: column; gap: 28px">
+    <div class="wrap" style="display: flex; flex-direction: column; gap: 30px">
       <div class="soon">
+        <svg viewBox="0 0 54 54" aria-hidden="true">
+          <rect x="6" y="20" width="42" height="28" rx="5" fill="#2B7F8C" stroke="#1B2A5A" stroke-width="3"></rect>
+          <path d="M18 20 V12 a9 9 0 0 1 18 0 V20" fill="none" stroke="#1B2A5A" stroke-width="3"></path>
+          <rect x="14" y="29" width="8" height="12" rx="2" fill="#F6C243"></rect>
+          <rect x="25" y="26" width="6" height="15" rx="2" fill="#D24E24"></rect>
+          <rect x="34" y="31" width="7" height="10" rx="2" fill="#FFFFFF"></rect>
+        </svg>
         <span class="badge">Próximamente</span>
         <p>En febrero sumamos artículos de librería para la vuelta a clases.</p>
       </div>
       <div class="section-head" style="margin-bottom: 0">
         <p class="eyebrow">Contacto</p>
-        <h2>Estamos frente al Jardín ENI 45</h2>
+        <h2>Encontranos frente al jardín</h2>
       </div>
       <div class="contact-grid">
         <div class="contact-card">
+          <span class="ic" style="background: var(--orange-soft)"><svg viewBox="0 0 24 24" fill="none" stroke="#D24E24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.2A8.5 8.5 0 1 1 21 12z"></path></svg></span>
           <span class="lbl">WhatsApp</span>
           <span class="val" id="wa-num">264 458 4188</span>
           <button class="copy" type="button" id="copy-wa" data-copy="264 458 4188">Copiar número</button>
           <a class="btn btn-primary btn-sm" href="https://wa.me/5492644584188?text=Hola%20Punto%20%26%20Aparte%2C%20quiero%20hacer%20un%20pedido." target="_blank" rel="noopener">Abrir chat</a>
         </div>
         <div class="contact-card">
+          <span class="ic" style="background: var(--yellow-soft)"><svg viewBox="0 0 24 24" fill="none" stroke="#1B2A5A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></span>
           <span class="lbl">Horario</span>
           <span class="val">7:40 a 18 h</span>
-          <p style="font-weight: 800">Lunes a viernes</p>
+          <p class="strong">Lunes a viernes</p>
           <p>Abrimos antes de que entren la Escuela Mary O'Graham y el jardín.</p>
         </div>
         <div class="contact-card">
+          <span class="ic" style="background: var(--teal-soft)"><svg viewBox="0 0 24 24" fill="none" stroke="#2B7F8C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.2"></circle></svg></span>
           <span class="lbl">Dirección</span>
           <span class="val">Punta Arenas 2379</span>
-          <p>Barrio Edilco, frente al Jardín ENI 45, que está al lado de la Escuela Mary O'Graham.</p>
-          <a class="btn btn-ghost btn-sm" href="https://www.google.com/maps/search/?api=1&amp;query=Punta%20Arenas%202379%2C%20Barrio%20Edilco%2C%20San%20Juan%2C%20Argentina" target="_blank" rel="noopener">Ver en el mapa</a>
+          <p>Barrio Edilco, casi en la esquina, frente al Jardín ENI 45, que está al lado de la Escuela Mary O'Graham.</p>
+          <a class="btn btn-ghost btn-sm" href="https://www.google.com/maps/search/?api=1&amp;query=-31.563725%2C-68.520817" target="_blank" rel="noopener">Ver en el mapa</a>
         </div>
         <div class="contact-card">
+          <span class="ic" style="background: var(--pink-soft)"><svg viewBox="0 0 24 24" fill="none" stroke="#E94F8A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="#E94F8A"></circle></svg></span>
           <span class="lbl">Instagram</span>
           <span class="val">@fm.puntoyaparte</span>
           <p>Ofertas, productos nuevos y regalos.</p>
