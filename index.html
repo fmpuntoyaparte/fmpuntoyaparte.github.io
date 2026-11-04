@@ -157,7 +157,11 @@ svg { display: block; }
   display: flex; flex-direction: column; min-width: 0; box-shadow: 6px 6px 0 var(--navy);
   transition: transform .2s ease, box-shadow .2s ease;
 }
+.service { text-decoration: none; color: inherit; }
 .service:hover { transform: translate(-3px, -3px); box-shadow: 9px 9px 0 var(--navy); }
+.service .see { display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; align-self: flex-start; background: var(--orange); color: #FFFFFF; border-radius: 999px; padding: 7px 16px; font-weight: 900; font-size: 14.5px; }
+.service .see::after { content: "\2192"; }
+.price-card { scroll-margin-top: calc(90px + env(safe-area-inset-top, 0px)); }
 @media (prefers-reduced-motion: reduce) { .service, .service:hover { transition: none; transform: none; } }
 .service .art { height: 170px; display: flex; align-items: center; justify-content: center; border-bottom: 3px solid var(--navy); }
 .service .art svg { width: 190px; height: 150px; }
@@ -342,7 +346,7 @@ svg { display: block; }
         <p>Trabajos para el jardín, la escuela, la oficina o la casa. Mandanos el archivo y lo preparamos.</p>
       </div>
       <div class="services">
-        <article class="service">
+        <a class="service" href="#precio-impresiones">
           <div class="art bg-orange" aria-hidden="true">
             <svg viewBox="0 0 200 160">
               <rect x="56" y="14" width="88" height="46" rx="4" fill="#FFFFFF" stroke="#1B2A5A" stroke-width="4"></rect>
@@ -359,9 +363,10 @@ svg { display: block; }
             <h3>Impresiones y copias</h3>
             <p>En blanco y negro o a color, de tus archivos, fotos o documentos en papel.</p>
             <p class="tag">Tamaño A4</p>
+            <span class="see">Ver precios</span>
           </div>
-        </article>
-        <article class="service">
+        </a>
+        <a class="service" href="#precio-espiralados">
           <div class="art bg-teal" aria-hidden="true">
             <svg viewBox="0 0 200 160">
               <rect x="66" y="18" width="96" height="124" rx="8" fill="#FFFFFF" stroke="#1B2A5A" stroke-width="4" transform="rotate(9 114 80)"></rect>
@@ -382,9 +387,10 @@ svg { display: block; }
             <h3>Espiralados</h3>
             <p>Carpetas, apuntes, cuadernillos y trabajos prácticos con tapa transparente y contratapa.</p>
             <p class="tag">Espirales de todos los tamaños</p>
+            <span class="see">Ver precios</span>
           </div>
-        </article>
-        <article class="service">
+        </a>
+        <a class="service" href="#precio-plastificados">
           <div class="art bg-yellow" aria-hidden="true">
             <svg viewBox="0 0 200 160">
               <g transform="rotate(-8 100 82)">
@@ -404,9 +410,10 @@ svg { display: block; }
             <h3>Plastificados</h3>
             <p>Credenciales, láminas, carteles y fotos protegidos para que duren.</p>
             <p class="tag">Hasta tamaño A3</p>
+            <span class="see">Ver precios</span>
           </div>
-        </article>
-        <article class="service">
+        </a>
+        <a class="service" href="#precio-etiquetas">
           <div class="art bg-pink" aria-hidden="true">
             <svg viewBox="0 0 200 160">
               <rect x="40" y="16" width="120" height="128" rx="10" fill="#FFFFFF" stroke="#1B2A5A" stroke-width="4"></rect>
@@ -424,8 +431,9 @@ svg { display: block; }
             <h3>Etiquetas y stickers</h3>
             <p>Etiquetas adhesivas con el nombre para útiles, frascos y souvenirs.</p>
             <p class="tag">Al momento</p>
+            <span class="see">Ver precios</span>
           </div>
-        </article>
+        </a>
       </div>
     </div>
   </section>
@@ -438,7 +446,7 @@ svg { display: block; }
         <p>Precios en pesos. Si tenés un trabajo distinto, consultanos por WhatsApp y te pasamos el precio.</p>
       </div>
       <div class="prices">
-        <article class="price-card">
+        <article class="price-card" id="precio-impresiones">
           <div class="price-head bg-orange">
             <svg viewBox="0 0 200 160" aria-hidden="true">
               <rect x="56" y="14" width="88" height="46" rx="4" fill="#FFFFFF" stroke="#1B2A5A" stroke-width="5"></rect>
@@ -461,7 +469,7 @@ svg { display: block; }
             <li><span class="what">Color, doble faz<small>Página llena o foto</small></span><span class="amt">$900</span></li>
           </ul>
         </article>
-        <article class="price-card">
+        <article class="price-card" id="precio-espiralados">
           <div class="price-head bg-teal">
             <svg viewBox="0 0 200 160" aria-hidden="true">
               <rect x="66" y="18" width="96" height="124" rx="8" fill="#FFFFFF" stroke="#1B2A5A" stroke-width="5" transform="rotate(9 114 80)"></rect>
@@ -486,7 +494,7 @@ svg { display: block; }
             <li><span class="what">Hasta 250 hojas</span><span class="amt">$4.500</span></li>
           </ul>
         </article>
-        <article class="price-card">
+        <article class="price-card" id="precio-plastificados">
           <div class="price-head bg-yellow">
             <svg viewBox="0 0 200 160" aria-hidden="true">
               <g transform="rotate(-8 100 82)">
@@ -506,7 +514,7 @@ svg { display: block; }
             <li><span class="what">Tamaño A3</span><span class="amt">$3.500</span></li>
           </ul>
         </article>
-        <article class="price-card">
+        <article class="price-card" id="precio-etiquetas">
           <div class="price-head bg-pink">
             <svg viewBox="0 0 200 160" aria-hidden="true">
               <rect x="40" y="16" width="120" height="128" rx="10" fill="#FFFFFF" stroke="#1B2A5A" stroke-width="5"></rect>
